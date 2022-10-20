@@ -35,6 +35,7 @@ char *disemvowel(char *str) {
         vowelcount--;
     }
   }
+  free(str);
   result[strlen(result)-1] = '\0';
   return result;
 }
