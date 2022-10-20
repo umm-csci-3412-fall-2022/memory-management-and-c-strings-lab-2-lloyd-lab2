@@ -6,7 +6,7 @@ void is_palindrome(char const *str) {
   char *pal = palindrome(str);
   ASSERT_STREQ(pal, "Yes");
   free(pal);
-}
+} 
 
 void not_palindrome(char const *str) {
   char *pal = palindrome(str);
