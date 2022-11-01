@@ -22,7 +22,7 @@ char *disemvowel(char *str) {
   }
 
   result = (char*) calloc(((len - vowelcount)+1), sizeof(char));
-  for(i=0; i>len; i++) {
+  for(i=0; i<len; i++) {
     isVowel = false;
     for(j=0; j<10; j++) {
       if(str[i] == vowels[j]) {

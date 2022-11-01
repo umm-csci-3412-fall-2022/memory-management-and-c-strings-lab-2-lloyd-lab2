@@ -2,34 +2,30 @@
 
 #include "disemvowel.h"
 
-TEST(Disemvowel, HandleEmptyString) {
-  char* str = disemvowel((char*) "");
-  ASSERT_STREQ("", str);
+void test_strings(const char* input, const char* result) {
+  char* str = disemvowel((char*) input);
+  ASSERT_STREQ(result, str);
   free(str);
+}
+
+TEST(Disemvowel, HandleEmptyString) {
+  test_strings("", "");
 }
 
 TEST(Disemvowel, HandleNoVowels) {
-  char* str = disemvowel((char*) "pqrst");
-  ASSERT_STREQ("pqrst", str);
-  free(str);
+  test_strings("pqrst","pqrst");
 }
 
 TEST(Disemvowel, HandleOnlyVowels) {
-  char* str = disemvowel((char*) "aeiouAEIOUOIEAuoiea");
-  ASSERT_STREQ("", str);
-  free(str);
+  test_strings("aeiouAEIOUOIEAuoiea", "");
 }
 
 TEST(Disemvowel, HandleMorrisMinnesota) {
-  char* str = disemvowel((char*) "Morris, Minnesota");
-  ASSERT_STREQ("Mrrs, Mnnst", str);
-  free(str);
+  test_strings("Morris, Minnesota", "Mrrs, Mnnst");
 }
 
 TEST(Disemvowel, HandlePunctuation) {
-  char* str = disemvowel((char*) "An (Unexplained) Elephant!");
-  ASSERT_STREQ("n (nxplnd) lphnt!", str);
-  free(str);
+  test_strings("An (Unexplained) Elephant!", "n (nxplnd) lphnt!");
 }
 
 TEST(Disemvowel, HandleLongString) {
