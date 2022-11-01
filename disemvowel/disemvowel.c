@@ -6,7 +6,7 @@
 #include "disemvowel.h"
 
 char *disemvowel(char *str) {
-  int vowelcount, len, i, j;
+  int vowelcount = 0, len = 0, pos_in_result = 0, i, j;
   bool isVowel;
   char *vowels, *result;
 
@@ -14,28 +14,26 @@ char *disemvowel(char *str) {
   vowels = (char*) "aeiouAEIOU";
 
   for(i=0; i<len; i++) {
-    for(j=0; j<5; j++) {
+    for(j=0; j<10; j++) {
       if(str[i] == vowels[j]) {
         vowelcount++;
       }
     }
   }
 
-  result = (char*) calloc((len - vowelcount)+1, sizeof(char));
-  for(i=len-1; i>=0; i--) {
+  result = (char*) calloc(((len - vowelcount)+1), sizeof(char));
+  for(i=0; i>len; i++) {
     isVowel = false;
-    for(j=0; j<5; j++) {
+    for(j=0; j<10; j++) {
       if(str[i] == vowels[j]) {
         isVowel = true;
       }
     }
     if(!isVowel) {
-        result[i-vowelcount] = str[i];
-    } else {
-        vowelcount--;
+      result[pos_in_result] = str[i];
+      pos_in_result++;
     }
   }
-  free(str);
-  result[strlen(result)-1] = '\0';
+  result[(len - vowelcount)] = '\0';
   return result;
 }
